@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Football</title>
+    <link rel="icon" type="image/png" href="src/img/nike-4-logo-png-transparent.png">
+    
+
+</head>
+<body class="bg-gray-50" >
+<header>
+    <!-- nav desktop up -->
+    <nav class="hidden lg:flex py-1 justify-between items-center">
+        <div class="logo ml-4 pl-7">
+            <img class="w-6" src="src/img/air-jordan-logo.png" alt="">
+        </div>
+<div class=" flex gap-3 mr-8 pr-7 text-[13px] font-semibold">
+    <a href="" class="hover:text-gray-500 ">Find a Store</a>
+    <p class="border-[1px] border-gray-500"></p>
+    <a href="" class="hover:text-gray-500 ">Help</a>
+        <p class="border-[1px] border-gray-500"></p>
+
+    <a href="login.html" class=" hover:text-gray-500">Join Us</a>
+        <p class="border-[1px] border-gray-500"></p>
+
+<!-- لینک ورود -->
+<a href="login.html" id="signInLink" class="hover:text-gray-500">Sign In</a>
+
+</div>
+
+</div>
+
+    </nav>
+
+
+    <!-- nav mobile -->
+    <nav class="bg-white flex justify-between items-center lg:hidden">
+        <div class="logo w-16 ml-4">
+            <img src="src/img/nike-4-logo-black-and-white.png" alt="">
+        </div>
+<div class=" flex gap-3 mr-8">
+    <a href="" class="hover:bg-gray-200 duration-500 rounded-[30%] "><i class="fas fa-search text-xl p-1 text-gray-700"></i></a>
+    <!-- لینک ورود -->
+<a href="login.html" id="signInLink2" class="hover:text-gray-500"><i class="fas fa-user text-xl p-1 text-gray-700"></i></a>
+
+<!-- سایدبار سبد خرید -->
+<div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300">
+    <div class="p-6 h-full flex flex-col">
+        <!-- هدر -->
+        <div class="flex justify-between items-center mb-8 pb-4 border-b">
+            <h2 class="text-2xl font-bold">🛒 سبد خرید</h2>
+            <button id="closeCart" class="text-3xl text-gray-500 hover:text-black">&times;</button>
+        </div>
+        
+        <!-- لیست محصولات -->
+        <div id="cartItems" class="flex-grow overflow-y-auto mb-6">
+            <!-- آیتم‌ها با JS اضافه می‌شوند -->
+            <div class="text-center text-gray-500 py-10" id="emptyCart">
+                سبد خرید شما خالی است
+            </div>
+        </div>
+        
+        <!-- جمع کل -->
+        <div class="border-t pt-4">
+            <div class="flex justify-between mb-2">
+                <span>جمع کل:</span>
+                <span id="cartSubtotal" class="font-bold">0 تومان</span>
+            </div>
+            <div class="flex justify-between mb-4">
+                <span>هزینه ارسال:</span>
+                <span id="shippingCost">رایگان</span>
+            </div>
+            <div class="flex justify-between text-xl font-bold mb-6">
+                <span>مبلغ قابل پرداخت:</span>
+                <span id="cartTotal">0 تومان</span>
+            </div>
+            
+            <!-- دکمه‌ها -->
+            <div class="space-y-3">
+                
+                <a href="checkout.html"><button id="checkoutBtn" class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed" disabled><a href=""></a>
+                    ادامه فرآیند خرید
+                </button></a>
+                <button id="continueShopping" class="w-full border border-gray-300 py-3 rounded-lg hover:bg-gray-50">
+                    ادامه خرید
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- آیکون سبد خرید در navbar (آپدیت شده) -->
+<a href="checkout.html" id="cartIcon" class="hover:bg-gray-200 duration-500 rounded-[30%] relative">
+    <i class="fas fa-cart-shopping text-xl p-1 text-neutral-700"></i>
+    <span id="cartCount1" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+</a>
+    <!-- hamberger -->
+<nav class=" sticky top-0 z-10 flex justify-between items-center lg:hidden">
+
+  <button id="menu-btn" class="text-xl focus:outline-none z-50 relative">
+    &#9776;
+  </button>
+
+  <!-- منوی همبرگر -->
+  <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-40">
+    <ul class="flex flex-col mt-16 gap-4 p-4 text-lg font-medium">
+      <li><a href="#" class="hover:text-blue-600">New & Featured</a></li>
+      <li><a href="#" class="hover:text-blue-600">Men</a></li>
+      <li><a href="#" class="hover:text-blue-600">Women</a></li>
+      <li><a href="#" class="hover:text-blue-600">Kids</a></li>
+      <li><a href="#" class="hover:text-blue-600">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- لایه پوشاننده برای بستن منو با کلیک بیرون -->
+  <div id="overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-30"></div>
+</nav>
+
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const overlay = document.getElementById('overlay');
+let menuOpen = false;
+
+function openMenu() {
+  mobileMenu.classList.remove('translate-x-full');
+  mobileMenu.classList.add('translate-x-0');
+  overlay.classList.remove('opacity-0', 'pointer-events-none');
+  overlay.classList.add('opacity-50', 'pointer-events-auto');
+  menuBtn.innerHTML = '&times;';
+  menuOpen = true;
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove('translate-x-0');
+  mobileMenu.classList.add('translate-x-full');
+  overlay.classList.remove('opacity-50', 'pointer-events-auto');
+  overlay.classList.add('opacity-0', 'pointer-events-none');
+  menuBtn.innerHTML = '&#9776;';
+  menuOpen = false;
+}
+
+menuBtn.addEventListener('click', () => {
+  if(!menuOpen) openMenu();
+  else closeMenu();
+});
+
+overlay.addEventListener('click', closeMenu);
+</script>
+
+  <!-- منوی موبایل -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-white w-full shadow-md">
+    <ul class="flex flex-col gap-2 p-4">
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu1')">New & Featured</button>
+        <ul id="submenu1" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu2')">Men</button>
+        <ul id="submenu2" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu3')">Women</button>
+        <ul id="submenu3" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu4')">Kids</button>
+        <ul id="submenu4" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu5')">Sale</button>
+        <ul id="submenu5" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+  <script>
+    // باز و بسته کردن منوی موبایل
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+  
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  
+    // باز و بسته کردن زیرمنوهای موبایل
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.classList.toggle('hidden');
+    }
+  </script>
+</nav>
+
+</div>
+    </nav>
+   
+</header>
+
+    <!-- nav sticky -->
+    <nav class="hidden  lg:flex bg-white shadow-md sticky top-0 justify-between items-center z-40 w-full">
+
+        <div class="logo ml-4 pl-7">
+            <img class="w-16" src="src/img/nike-4-logo-black-and-white.png" alt="">
+        </div>
+  <ul class="flex gap-8 px-8 justify-between z-50">
+
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        New & Featured
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        Men
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        Women
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        Kids
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+       Shoes
+      </a>
+
+     
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+  <div class=" flex gap-3 mr-12">
+<div class="text-black relative bg-gray-200 flex rounded-2xl">
+    <i class="fas fa-search text-xl p-1 text-gray-500 absolute left-2"></i>
+    <input class="text-center text-white rounded-2xl " type="search" placeholder="Search">
+</div>
+<!-- سایدبار سبد خرید -->
+<div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300">
+    <div class="p-6 h-full flex flex-col">
+        <!-- هدر -->
+        <div class="flex justify-between items-center mb-8 pb-4 border-b">
+            <h2 class="text-2xl font-bold">🛒 سبد خرید</h2>
+            <button id="closeCart" class="text-3xl text-gray-500 hover:text-black">&times;</button>
+        </div>
+        
+        <!-- لیست محصولات -->
+        <div id="cartItems" class="flex-grow overflow-y-auto mb-6">
+            <!-- آیتم‌ها با JS اضافه می‌شوند -->
+            <div class="text-center text-gray-500 py-10" id="emptyCart">
+                سبد خرید شما خالی است
+            </div>
+        </div>
+        
+        <!-- جمع کل -->
+        <div class="border-t pt-4">
+            <div class="flex justify-between mb-2">
+                <span>جمع کل:</span>
+                <span id="cartSubtotal" class="font-bold">0 تومان</span>
+            </div>
+            <div class="flex justify-between mb-4">
+                <span>هزینه ارسال:</span>
+                <span id="shippingCost">رایگان</span>
+            </div>
+            <div class="flex justify-between text-xl font-bold mb-6">
+                <span>مبلغ قابل پرداخت:</span>
+                <span id="cartTotal">0 تومان</span>
+            </div>
+            
+            <!-- دکمه‌ها -->
+            <div class="space-y-3">
+                <button id="checkoutBtn" class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    ادامه فرآیند خرید
+                </button>
+                <button id="continueShopping" class="w-full border border-gray-300 py-3 rounded-lg hover:bg-gray-50">
+                    ادامه خرید
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- آیکون سبد خرید در navbar (آپدیت شده) -->
+<a href="checkout.html" id="cartIcon" class="hover:bg-gray-200 duration-500 rounded-[30%] relative">
+    <i class="fas fa-cart-shopping text-xl p-1 text-neutral-700"></i>
+    <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+</a>   
+    <a href=""><i class="far fa-heart text-xl p-1 text-gray-700"></i></a>
+
+</div>
+</nav>
+ <!-- tag -->
+    <div class="tag mt-2 text-center ">
+        <p class="text-[18px]">Free Standard Delivery & 30-Day Free Returns</p>
+        <a href="" class="underline font-bold text-[14px]">Join Now View Details</a>
+    </div>
+
+    <!-- Banner  -->
+    <div class="relative mt-5 container mx-auto">
+
+  <div class=" w-full h-96 md:h-[400px]">
+    <img src="src/img/football/image (1).avif" class="w-full h-full object-cover" />
+<div class="absolute inset-0 bg-black/40 flex flex-col pb-16 items-center justify-end  md: text-white">
+        <h3 class="text-l md:text-l font-bold mb-1">They Keep Finding Out.</h3>
+      <h2 class="text-3xl md:text-7xl font-extrabold mb-8">GLOBAL FOOTBALL</h2>
+   
+      <div class="flex gap-3">
+         <button class="bg-white text-black px-4 py-2 rounded-3xl hover:bg-gray-200"> Gear Up</button>
+        <button class="bg-white text-black px-4 py-2 rounded-3xl ">Watch ▶</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- فیلترها -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- سایدبار فیلتر -->
+            <aside class="lg:w-1/4">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-lg mb-4">Filter Products</h3>
+                    
+                    <!-- دسته‌بندی -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Category</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="running" checked>
+                                <span class="mr-2">Official shirt</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="basketball" checked>
+                                <span class="mr-2">Basketball</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="lifestyle" checked>
+                                <span class="mr-2">Lifestyle</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="training" checked>
+                                <span class="mr-2">Practice</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- قیمت -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Pricing range</h4>
+                        <div class="space-y-2">
+                                <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="0-5000000000000" checked>
+                                <span class="mr-2">No price limit</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="0-500000" checked>
+                                <span class="mr-2">Up to 500,000 Tomans</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="500000-1000000">
+                                <span class="mr-2">500,000 to 1,000,000 Tomans</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="1000000-3000000">
+                                <span class="mr-2">1,000,000 to 3,000,000 Tomans</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="3000000-10000000">
+                                <span class="mr-2">Above 3,000,000 Tomans</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- سایز -->
+                        <h4 class="font-semibold mb-3">Size (EU)</h4>
+
+                    <div id="sizes" class="flex flex-wrap gap-2 mb-2"></div>
+<script>
+  const sizes = [38, 39, 40, 41, 42, 43, 44, 45];
+
+  document.getElementById('sizes').innerHTML = sizes
+    .map(size => `
+      <button 
+        class="size-btn border px-3 py-1 rounded hover:bg-gray-100"
+        data-size="${size}">
+        ${size}
+      </button>
+    `)
+    .join('');
+</script>
+
+                    
+                    <!-- دکمه اعمال فیلتر -->
+                    <button id="applyFilters" class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800">
+                    Apply filters                    </button>
+                    <button id="clearFilters" class="w-full border border-gray-300 py-2 rounded-lg mt-2 hover:bg-gray-50">
+                       Clear filters
+                    </button>
+                </div>
+            </aside>
+            
+            <!-- محتوای اصلی -->
+            <div class="lg:w-3/4">
+                <!-- نوار مرتب‌سازی -->
+                <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-lg shadow-sm">
+                    <div>
+                        <span id="productCount">12</span> products found  
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span>Sort by :</span>
+                        <select id="sortBy" class="border rounded px-3 py-1">
+                            <option value="newest">Newest</option>
+                            <option value="price-low">Price : Low to High</option>
+                            <option value="price-high">Price : High to Low</option>
+                            <option value="popular">Best Selles</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- لیست محصولات -->
+                <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- محصولات با JavaScript اضافه می‌شوند -->
+                </div>
+                
+                <!-- صفحه‌بندی -->
+                <div class="flex justify-center mt-10">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">« Previous</button>
+                        <button class="px-3 py-2 border rounded bg-black text-white">1</button>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">2</button>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">3</button>
+                        <span class="px-3 py-2">...</span>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">10</button>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">Next »</button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/football.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

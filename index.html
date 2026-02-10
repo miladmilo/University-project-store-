@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title> Similar to the Nike site</title>
+    <link rel="icon" type="image/png" href="src/img/nike-4-logo-png-transparent.png">
+    
+
+</head>
+<body class="bg-gray-100">
+<header>
+    <!-- nav desktop up -->
+    <nav class="hidden lg:flex py-1 justify-between items-center">
+        <div class="logo ml-4 pl-7">
+            <img class="w-6" src="src/img/air-jordan-logo.png" alt="">
+        </div>
+<div class=" flex gap-3 mr-8 pr-7 text-[13px] font-semibold">
+    <a href="" class="hover:text-gray-500 ">Find a Store</a>
+    <p class="border-[1px] border-gray-500"></p>
+    <a href="" class="hover:text-gray-500 ">Help</a>
+        <p class="border-[1px] border-gray-500"></p>
+
+    <a href="#" class=" hover:text-gray-500">Join Us</a>
+        <p class="border-[1px] border-gray-500"></p>
+
+<!-- لینک ورود -->
+<a href="login.html" id="signInLink" class="hover:text-gray-500">Sign In</a>
+
+</div>
+
+</div>
+
+    </nav>
+
+
+    <!-- nav mobile -->
+    <nav class="bg-white flex justify-between items-center lg:hidden">
+        <div class="logo w-16 ml-4">
+            <img src="src/img/nike-4-logo-black-and-white.png" alt="">
+        </div>
+<div class=" flex gap-3 mr-8">
+    <a href="" class="hover:bg-gray-200 duration-500 rounded-[30%] "><i class="fas fa-search text-xl p-1 text-gray-700"></i></a>
+    <!-- لینک ورود -->
+<a href="login.html" id="signInLink2" class="hover:text-gray-500"><i class="fas fa-user text-xl p-1 text-gray-700"></i></a>
+
+<!-- سایدبار سبد خرید -->
+<div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300">
+    <div class="p-6 h-full flex flex-col">
+        <!-- هدر -->
+        <div class="flex justify-between items-center mb-8 pb-4 border-b">
+            <h2 class="text-2xl font-bold">🛒 سبد خرید</h2>
+            <button id="closeCart" class="text-3xl text-gray-500 hover:text-black">&times;</button>
+        </div>
+        
+        <!-- لیست محصولات -->
+        <div id="cartItems" class="flex-grow overflow-y-auto mb-6">
+            <!-- آیتم‌ها با JS اضافه می‌شوند -->
+            <div class="text-center text-gray-500 py-10" id="emptyCart">
+                سبد خرید شما خالی است
+            </div>
+        </div>
+        
+        <!-- جمع کل -->
+        <div class="border-t pt-4">
+            <div class="flex justify-between mb-2">
+                <span>جمع کل:</span>
+                <span id="cartSubtotal" class="font-bold">0 تومان</span>
+            </div>
+            <div class="flex justify-between mb-4">
+                <span>هزینه ارسال:</span>
+                <span id="shippingCost">رایگان</span>
+            </div>
+            <div class="flex justify-between text-xl font-bold mb-6">
+                <span>مبلغ قابل پرداخت:</span>
+                <span id="cartTotal">0 تومان</span>
+            </div>
+            
+            <!-- دکمه‌ها -->
+            <div class="space-y-3">
+                
+                <a href="checkout.html"><button id="checkoutBtn" class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    ادامه فرآیند خرید
+                </button></a>
+                <button id="continueShopping" class="w-full border border-gray-300 py-3 rounded-lg hover:bg-gray-50">
+                    ادامه خرید
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- آیکون سبد خرید در navbar (آپدیت شده) -->
+<a href="checkout.html" id="cartIcon" class="hover:bg-gray-200 duration-500 rounded-[30%] relative">
+    <i class="fas fa-cart-shopping text-xl p-1 text-neutral-700"></i>
+    <span id="cartCount1" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+</a>
+    <!-- hamberger -->
+<nav class=" sticky top-0 z-10 flex justify-between items-center lg:hidden">
+
+  <button id="menu-btn" class="text-xl focus:outline-none z-50 relative">
+    &#9776;
+  </button>
+
+  <!-- منوی همبرگر -->
+  <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-40">
+    <ul class="flex flex-col mt-16 gap-4 p-4 text-lg font-medium">
+      <li><a href="#" class="hover:text-blue-600">New & Featured</a></li>
+      <li><a href="#" class="hover:text-blue-600">Men</a></li>
+      <li><a href="#" class="hover:text-blue-600">Women</a></li>
+      <li><a href="#" class="hover:text-blue-600">Kids</a></li>
+      <li><a href="#" class="hover:text-blue-600">Sale</a></li>
+    </ul>
+  </div>
+
+  <!-- لایه پوشاننده برای بستن منو با کلیک بیرون -->
+  <div id="overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-30"></div>
+</nav>
+
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const overlay = document.getElementById('overlay');
+let menuOpen = false;
+
+function openMenu() {
+  mobileMenu.classList.remove('translate-x-full');
+  mobileMenu.classList.add('translate-x-0');
+  overlay.classList.remove('opacity-0', 'pointer-events-none');
+  overlay.classList.add('opacity-50', 'pointer-events-auto');
+  menuBtn.innerHTML = '&times;';
+  menuOpen = true;
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove('translate-x-0');
+  mobileMenu.classList.add('translate-x-full');
+  overlay.classList.remove('opacity-50', 'pointer-events-auto');
+  overlay.classList.add('opacity-0', 'pointer-events-none');
+  menuBtn.innerHTML = '&#9776;';
+  menuOpen = false;
+}
+
+menuBtn.addEventListener('click', () => {
+  if(!menuOpen) openMenu();
+  else closeMenu();
+});
+
+overlay.addEventListener('click', closeMenu);
+</script>
+
+  <!-- منوی موبایل -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-white w-full shadow-md">
+    <ul class="flex flex-col gap-2 p-4">
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu1')">New & Featured</button>
+        <ul id="submenu1" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu2')">Men</button>
+        <ul id="submenu2" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu3')">Women</button>
+        <ul id="submenu3" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu4')">Kids</button>
+        <ul id="submenu4" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+      <li>
+        <button class="w-full text-left font-medium py-2" onclick="toggleSubmenu('submenu5')">Sale</button>
+        <ul id="submenu5" class="hidden pl-4">
+          <li><a href="#" class="block py-1">کفش</a></li>
+          <li><a href="#" class="block py-1">کیف</a></li>
+          <li><a href="#" class="block py-1">اکسسوری</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+  <script>
+    // باز و بسته کردن منوی موبایل
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+  
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  
+    // باز و بسته کردن زیرمنوهای موبایل
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.classList.toggle('hidden');
+    }
+  </script>
+</nav>
+
+</div>
+    </nav>
+   
+</header>
+
+    <!-- nav sticky -->
+    <nav class="hidden  lg:flex bg-white shadow-md sticky top-0 justify-between items-center z-40 w-full">
+
+        <div class="logo ml-4 pl-7">
+            <img class="w-16" src="src/img/nike-4-logo-black-and-white.png" alt="">
+        </div>
+  <ul class="flex gap-8 px-8 justify-between z-50">
+
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        New & Featured
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        Men
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        Women
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="#" class="font-medium hover:text-blue-600">
+        Kids
+      </a>
+
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- آیتم با زیرمنو -->
+    <li class="relative group ">
+      <a href="shoes.html" class="font-medium hover:text-blue-600">
+       Shoes
+      </a>
+
+     
+      <!-- زیرمنو -->
+      <ul
+        class="absolute right-0 mt-3 w-40
+               bg-white shadow-lg rounded-lg
+               opacity-0 invisible
+               group-hover:opacity-100 group-hover:visible
+               transition-all duration-300"
+      >
+        <li>
+          <a href="football.html" class="block px-4 py-2 hover:bg-gray-100">
+            FOOTBALL
+          </a>
+        </li>
+        <li>
+          <a href="golf.html" class="block px-4 py-2 hover:bg-gray-100">
+            GOLF
+          </a>
+        </li>
+        <li>
+          <a href="Tennis.html" class="block px-4 py-2 hover:bg-gray-100">
+            TENNIS
+          </a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+  <div class=" flex gap-3 mr-12">
+<div class="text-black relative bg-gray-200 flex rounded-2xl">
+    <i class="fas fa-search text-xl p-1 text-gray-500 absolute left-2"></i>
+    <input class="text-center text-white rounded-2xl " type="search" placeholder="Search">
+</div>
+<!-- سایدبار سبد خرید -->
+<div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300">
+    <div class="p-6 h-full flex flex-col">
+        <!-- هدر -->
+        <div class="flex justify-between items-center mb-8 pb-4 border-b">
+            <h2 class="text-2xl font-bold">🛒 سبد خرید</h2>
+            <button id="closeCart" class="text-3xl text-gray-500 hover:text-black">&times;</button>
+        </div>
+        
+        <!-- لیست محصولات -->
+        <div id="cartItems" class="flex-grow overflow-y-auto mb-6">
+            <!-- آیتم‌ها با JS اضافه می‌شوند -->
+            <div class="text-center text-gray-500 py-10" id="emptyCart">
+                سبد خرید شما خالی است
+            </div>
+        </div>
+        
+        <!-- جمع کل -->
+        <div class="border-t pt-4">
+            <div class="flex justify-between mb-2">
+                <span>جمع کل:</span>
+                <span id="cartSubtotal" class="font-bold">0 تومان</span>
+            </div>
+            <div class="flex justify-between mb-4">
+                <span>هزینه ارسال:</span>
+                <span id="shippingCost">رایگان</span>
+            </div>
+            <div class="flex justify-between text-xl font-bold mb-6">
+                <span>مبلغ قابل پرداخت:</span>
+                <span id="cartTotal">0 تومان</span>
+            </div>
+            
+            <!-- دکمه‌ها -->
+            <div class="space-y-3">
+                <button id="checkoutBtn" class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    ادامه فرآیند خرید
+                </button>
+                <button id="continueShopping" class="w-full border border-gray-300 py-3 rounded-lg hover:bg-gray-50">
+                    ادامه خرید
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- آیکون سبد خرید در navbar (آپدیت شده) -->
+<a href="checkout.html" id="cartIcon" class="hover:bg-gray-200 duration-500 rounded-[30%] relative">
+    <i class="fas fa-cart-shopping text-xl p-1 text-neutral-700"></i>
+    <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+</a>   
+    <a href=""><i class="far fa-heart text-xl p-1 text-gray-700"></i></a>
+
+</div>
+</nav>
+ <!-- tag -->
+    <div class="tag mt-2 text-center ">
+        <p class="text-[18px]">Free Standard Delivery & 30-Day Free Returns</p>
+        <a href="" class="underline font-bold text-[14px]">Join Now View Details</a>
+    </div>
+
+
+    <!-- Banner Slider -->
+    <div class="relative w-full h-96 md:h-[600px] overflow-hidden">
+  <!-- Slide 1 -->
+  <div class="slide absolute inset-0 transition-opacity duration-[2s] opacity-100">
+<VIdeo src="src/img/Orange and Red Bold Sports Competition Video.mp4" class=""   autoplay
+  muted
+  loop
+  playsinline
+  ></VIdeo>
+    <!-- Text & Buttons -->
+    <div class="absolute inset-0 bg-black/40 flex flex-col pb-16 items-center justify-end  md: text-white">
+        <h3 class="text-l md:text-l font-bold mb-1">They Keep Finding Out.</h3>
+      <h2 class="text-3xl md:text-7xl font-extrabold mb-8">JUST DO IT.</h2>
+      <div class="flex gap-3">
+        <button class="bg-white text-black px-4 py-2 rounded-3xl hover:bg-gray-200"> Gear Up</button>
+        <button class="bg-white text-black px-4 py-2 rounded-3xl ">Watch ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide absolute inset-0 transition-opacity duration-[2s] opacity-0">
+    <img src="src/img/Tennis/image.avif" class="w-full h-full object-cover" />
+<div class="absolute inset-0 bg-black/40 flex flex-col pb-16 items-center justify-end  md: text-white">
+        <h3 class="text-l md:text-l font-bold mb-1">They Keep Finding Out.</h3>
+      <h2 class="text-3xl md:text-7xl font-extrabold mb-8">JUST DO IT.</h2>
+   
+      <div class="flex gap-3">
+         <button class="bg-white text-black px-4 py-2 rounded-3xl hover:bg-gray-200"> Gear Up</button>
+        <button class="bg-white text-black px-4 py-2 rounded-3xl ">Watch ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide absolute inset-0 transition-opacity duration-[2s] opacity-0">
+    <img src="src/img/football/image (1).avif" class="w-full h-full object-cover" />
+<div class="absolute inset-0 bg-black/40 flex flex-col pb-16 items-center justify-end  md: text-white">
+        <h3 class="text-l md:text-l font-bold mb-1">They Keep Finding Out.</h3>
+      <h2 class="text-3xl md:text-7xl font-extrabold mb-8">JUST DO IT.</h2>
+
+      <div class="flex gap-3">
+        <button class="bg-white text-black px-4 py-2 rounded-3xl hover:bg-gray-200"> Gear Up</button>
+        <button class="bg-white text-black px-4 py-2 rounded-3xl ">Watch ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrows -->
+  <button id="prevBtn"
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60">
+    ‹
+  </button>
+  <button id="nextBtn"
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60">
+    ›
+  </button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+    <div class="dot w-3 h-3 rounded-full bg-white/60 cursor-pointer"></div>
+    <div class="dot w-3 h-3 rounded-full bg-white/60 cursor-pointer"></div>
+    <div class="dot w-3 h-3 rounded-full bg-white/60 cursor-pointer"></div>
+  </div>
+  <script>
+  let slides = document.querySelectorAll('.slide');
+  let dots = document.querySelectorAll('.dot');
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? "1" : "0";
+    });
+    dots.forEach((dot, i) => {
+      dot.style.background = i === index ? "white" : "rgba(255,255,255,0.6)";
+    });
+  }
+
+  document.getElementById("nextBtn").onclick = () => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  };
+
+  document.getElementById("prevBtn").onclick = () => {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  };
+
+  dots.forEach((dot, index) => {
+    dot.onclick = () => {
+      current = index;
+      showSlide(current);
+    };
+  });
+
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }, 12000);
+</script>
+</div>
+<main>
+    <!-- Shop Gifts by Sport -->
+    <section class="gifts mt-16">
+        <div class="">
+            <div class="max-w-7xl mx-auto">
+                
+                <!-- Container for horizontal scrolling -->
+                <div class="relative">
+            <h2 class="font-bold text-2xl ml-5 mb-8 ">Shop Gifts by Sport</h2>
+            <!-- Scroll buttons -->
+            <button id="scrollLeft" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            
+            <button id="scrollRight" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            
+            <!-- Horizontal scroll container -->
+            <div id="scrollContainer" class="flex overflow-x-auto space-x-4 p-4 scrollbar-hide scroll-smooth">
+                <!-- Image cards -->
+                <div class="flex-none w-96 h-[600px] overflow-hidden">
+                   <a href="running.html">                    <img src="src/img/6C8526642-110428-run-hmed-131p.avif" alt=" " class="w-full h-[500px] object-cover"></a>
+                    <div class="pt-5">
+                        <h3 class="text-2xl font-semibold text-gray-800"> Running</h3>
+                    </div>
+                </div>
+                
+               <div class="flex-none w-96 h-[600px] overflow-hidden">
+                 <a href="Training.html"> <img src="src/img/938a195f8810cb9b31c6503221891897_XL.jpg" alt=" " class="w-full h-[500px] object-cover"></a>  
+                    <div class="pt-5">
+                        <h3 class="text-2xl font-semibold text-gray-800">Training </h3>
+                    </div>
+                </div>
+                <div class="flex-none w-96 h-[600px] overflow-hidden">
+                    <a href="football.html"><img src="src/img/nike-mercurial-vapor-vini-jr-player-edition-1.jpg" alt=" " class="w-full h-[500px] object-cover"></a>
+                    <div class="pt-5">
+                        <h3 class="text-2xl font-semibold text-gray-800"> Football</h3>
+                    </div>
+                </div>
+                <div class="flex-none w-96 h-[600px] overflow-hidden">
+                    <a href="basketball.html"> <img src="src/img/James-Harden-of-the-LA-Clippers-drives-to-the-basket-game-against-Sacramento-Kings.webp" alt=" " class="w-full h-[500px] object-cover"></a>
+                    <div class="pt-5">
+                        <h3 class="text-2xl font-semibold text-gray-800"> Basketball</h3>
+                    </div>
+                </div>
+                <div class="flex-none w-96 h-[600px] overflow-hidden">
+                    <a href="Training.html"><img src="src/img/221006.webp" alt=" " class="w-full h-[500px] object-cover"></a>
+                    <div class="pt-5">
+                        <h3 class="text-2xl font-semibold text-gray-800"> Sportswear</h3>
+                    </div>
+                </div>
+                <div class="flex-none w-96 h-[600px] overflow-hidden">
+                    <a href="running.html"><img src="src/img/happy-children-enjoying-their-gym-class.jpg" alt=" " class="w-full h-[500px] object-cover"></a>
+                    <div class="pt-5">
+                        <h3 class="text-2xl font-semibold text-gray-800"> Kids</h3>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollContainer = document.getElementById('scrollContainer');
+            const scrollLeftBtn = document.getElementById('scrollLeft');
+            const scrollRightBtn = document.getElementById('scrollRight');
+            
+            // Scroll right
+            scrollRightBtn.addEventListener('click', function() {
+                scrollContainer.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Scroll left
+            scrollLeftBtn.addEventListener('click', function() {
+                scrollContainer.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Hide buttons when at the edges
+            function updateButtonVisibility() {
+                const scrollLeft = scrollContainer.scrollLeft;
+                const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+                
+                scrollLeftBtn.style.opacity = scrollLeft > 0 ? '0.7' : '0.3';
+                scrollRightBtn.style.opacity = scrollLeft < maxScrollLeft ? '0.7' : '0.3';
+            }
+            
+            scrollContainer.addEventListener('scroll', updateButtonVisibility);
+            updateButtonVisibility(); // Initial check
+        });
+    </script>
+        
+        </div>
+    </section>
+    <!-- Featured -->
+    <h2 class=" text-3xl mb-7 mx-5">Featured</h2>
+    <section class="flex flex-col lg:flex-row flex-wrap ">
+       <div class="relative h-[600px] overflow-hidden shadow-lg bg-cover bg-center lg:w-[calc(50%-8px)] object-cover "
+  style="background-image: url('src/img/Hoka_Bondi_9_h.webp');"
+>
+  <!-- لایه تیره برای خوانایی متن -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- محتوا -->
+  <div class="relative z-10 p-6 h-full flex flex-col justify-end text-white ">
+    <h3 class="text-xl mb-2">
+Trial Running    </h3>
+
+    <p class="text-xl text-gray-200 mb-6">
+Up the Mountains, Through the Woods    </p>
+
+    <button class="self-start bg-white text-black px-5 py-1.5 rounded-3xl  hover:bg-gray-200 transition">
+     <a href="shoes.html">Explore</a> 
+    </button>
+  </div>
+</div>
+
+<div
+  class="relative h-[600px] overflow-hidden shadow-lg bg-cover bg-center lg:w-[calc(50%-8px)] object-cover"
+  style="background-image: url('src/img/Altra_Experience_Flow_2.webp');"
+>
+  <!-- لایه تیره برای خوانایی متن -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- محتوا -->
+  <div class="relative z-10 p-6 h-full flex flex-col justify-end text-white ">
+    <h3 class="text-xl mb-2">
+Hollywood Goalkeepers    </h3>
+
+    <p class="text-xl text-gray-200 mb-6">
+Show stoppers    </p>
+
+    <button class="self-start bg-white text-black px-5 py-1.5 rounded-3xl hover:bg-gray-200 transition">
+   <a href="shoes.html">Shop</a>   
+    </button>
+  </div>
+</div>
+
+<div
+  class="relative h-[600px] overflow-hidden shadow-lg bg-cover bg-center lg:w-[calc(50%-8px)] object-cover"
+  style="background-image: url('src/img/BrooksGlycerinMax.webp');"
+>
+  <!-- لایه تیره برای خوانایی متن -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- محتوا -->
+  <div class="relative z-10 p-12 pb-14 h-full flex flex-col justify-end text-white">
+    <h3 class="text-xl mb-2">
+More Comfort=More Running    </h3>
+
+    <p class="text-xl text-gray-200 mb-6">
+Vomero 18    </p>
+
+    <button class="self-start bg-white text-black px-5 py-1.5 rounded-3xl hover:bg-gray-200 transition">
+     <a href="shoes.html">Shop</a> 
+    </button>
+  </div>
+</div>
+
+<div
+  class="relative h-[600px] overflow-hidden shadow-lg bg-cover bg-center lg:w-[calc(50%-8px)] object-cover"
+  style="background-image: url('src/img/BrooksLaunch11.webp');"
+>
+  <!-- لایه تیره برای خوانایی متن -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- محتوا -->
+  <div class="relative z-10 p-6 h-full flex flex-col justify-end text-white ">
+
+
+    <p class="text-xl text-gray-200 mb-6">
+Best Sellers    </p>
+
+    <button class="self-start bg-white text-black px-5 py-1.5 rounded-3xl hover:bg-gray-200 transition">
+    <a href="shoes.html">Shop</a>  
+    </button>
+  </div>
+</div>
+
+    </section>
+    <!-- Refresh Your Sneaker Rotation -->
+        <section class=" mt-16">
+        <div class="">
+            <div class="max-w-7xl mx-auto">
+                
+                <!-- Container for horizontal scrolling -->
+                <div class="relative">
+            <h2 class="font-bold text-2xl ml-5 mb-8 ">Refresh Your Sneaker Rotation</h2>
+            <!-- Scroll buttons -->
+            <button id="scrollLeft2" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            
+            <button id="scrollRight2" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            
+            <!-- Horizontal scroll container -->
+            <div id="scrollContainer2" class="flex overflow-x-auto space-x-4 p-4 scrollbar-hide scroll-smooth">
+                <!-- Image cards -->
+                <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/NIKE+REAX+8+TR+MESH.avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike REAX Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">2,900,120 $</span>
+                    </div>
+                </a>
+                      <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/M+NK+COURT+LITE+4+HC+HERITAGE.avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike COURT Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">3,400,220 $</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/W+NIKE+V2K+RUN+GTX.avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike V2K Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">2,200,680 $</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/W+ZOOM+VAPOR+12+HC+PRM.avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike VAPOR Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">2,600,480 $</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/M+ZOOM+VAPOR+12+HC+PRM.avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike VAPOR Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">2,800,860 $</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/M+NIKE+METCON+10 (3).avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike METCON Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">4,500,340 $</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[500px] overflow-hidden" href="shoes.html"> 
+                     <img src="src/img/W+NIKE+FLEX+TRAIN (1).avif" alt=" " class="w-full h-[400px] object-cover">
+                    <div class="pt-5">
+                        <h3 class="text-2xl  text-gray-800"> Nike FLEX Leather</h3>
+                        <p class="text-gray-600">Men,s Shoes</p>
+                        <span class="font-semibold">4,100,550 $</span>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollContainer = document.getElementById('scrollContainer2');
+            const scrollLeftBtn = document.getElementById('scrollLeft2');
+            const scrollRightBtn = document.getElementById('scrollRight2');
+            
+            // Scroll right
+            scrollRightBtn.addEventListener('click', function() {
+                scrollContainer2.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Scroll left
+            scrollLeftBtn.addEventListener('click', function() {
+                scrollContainer2.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Hide buttons when at the edges
+            function updateButtonVisibility() {
+                const scrollLeft2 = scrollContainer2.scrollLeft2;
+                const maxScrollLeft = scrollContainer2.scrollWidth - scrollContainer2.clientWidth;
+                
+                scrollLeftBtn.style.opacity = scrollLeft2 > 0 ? '0.7' : '0.3';
+                scrollRightBtn.style.opacity = scrollLeft2 < maxScrollLeft ? '0.7' : '0.3';
+            }
+            
+            scrollContainer2.addEventListener('scroll', updateButtonVisibility);
+            updateButtonVisibility(); // Initial check
+        });
+    </script>
+        
+        </div>
+    </section>
+    <!-- shop by sport -->
+            <section class=" mt-16">
+        <div class="">
+            <div class="max-w-7xl mx-auto">
+                
+                <!-- Container for horizontal scrolling -->
+                <div class="relative">
+            <h2 class="font-bold text-2xl ml-5 mb-8 ">Shop By sport</h2>
+            <!-- Scroll buttons -->
+            <button id="scrollLeft3" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            
+            <button id="scrollRight3" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            
+            <!-- Horizontal scroll container -->
+            <div id="scrollContainer3" class="flex overflow-x-auto space-x-4 p-4 scrollbar-hide scroll-smooth">
+                <!-- Image cards -->
+                <a class="flex-none w-96 h-[600px] overflow-hidden" href="basketball.html"> 
+                     <img src="src/img/Stephen Curry of the Golden State Warriors shoots a free throw___.jpg" alt=" " class="w-full h-[500px] object-cover ">
+                    <div class="pt-5">
+                        
+                        <span class="font-semibold text-xl">BacketBall</span>
+                    </div>
+                </a>
+                      <a class="flex-none w-96 h-[600px] overflow-hidden" href="Tennis.html"> 
+                     <img src="src/img/Roger.jpg" alt=" " class="w-full h-[500px] object-cover">
+                    <div class="pt-5">
+                        
+                        <span class="font-semibold text-xl">Tennis</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[600px] overflow-hidden" href="football.html"> 
+                     <img src="src/img/Vini jr 🫶🏿.jpg" alt=" " class="w-full h-[500px] object-cover">
+                    <div class="pt-5">
+                        
+                        <span class="font-semibold text-xl">Football</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[600px] overflow-hidden" href="running.html"> 
+                     <img src="src/img/Athletics Photos - Download Free High-Quality Pictures _ Freepik.jpg" alt=" " class="w-full h-[500px] object-cover">
+                    <div class="pt-5">
+                       
+                        <span class="font-semibold text-xl">Running</span>
+                    </div>
+                </a>
+                                <a class="flex-none w-96 h-[600px] overflow-hidden" href="Skate.html"> 
+                     <img src="src/img/gameoftactical (Set of 2) Tandem Axle Wheel Kit Double Wheel Set for Skateboard Longboard.jpg" alt=" " class="w-full h-[500px] object-cover">
+                    <div class="pt-5">
+                        
+                        <span class="font-semibold text-xl">Skateboarding</span>
+                    </div>
+                </a>
+
+                     <a class="flex-none w-96 h-[600px] overflow-hidden" href="golf.html"> 
+                     <img src="src/img/2021 UIL boys state golf_ Results for Dallas-area individuals, teams.jpg" alt=" " class="w-full h-[500px] object-cover">
+                    <div class="pt-5">
+                       
+                        <span class="font-semibold text-xl">golf</span>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollContainer = document.getElementById('scrollContainer3');
+            const scrollLeftBtn = document.getElementById('scrollLeft3');
+            const scrollRightBtn = document.getElementById('scrollRight3');
+            
+            // Scroll right
+            scrollRightBtn.addEventListener('click', function() {
+                scrollContainer3.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Scroll left
+            scrollLeftBtn.addEventListener('click', function() {
+                scrollContainer3.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Hide buttons when at the edges
+            function updateButtonVisibility() {
+                const scrollLeft3 = scrollContainer3.scrollLeft3;
+                const maxScrollLeft = scrollContainer3.scrollWidth - scrollContainer3.clientWidth;
+                
+                scrollLeftBtn.style.opacity = scrollLeft3 > 0 ? '0.7' : '0.3';
+                scrollRightBtn.style.opacity = scrollLeft3 < maxScrollLeft ? '0.7' : '0.3';
+            }
+            
+            scrollContainer3.addEventListener('scroll', updateButtonVisibility);
+            updateButtonVisibility(); // Initial check
+        });
+    </script>
+        
+        </div>
+    </section>
+    <!-- shop by icon -->
+           <section class=" mt-16">
+        <div class="">
+            <div class="max-w-7xl mx-auto">
+                
+                <!-- Container for horizontal scrolling -->
+                <div class="relative">
+            <h2 class="font-bold text-2xl ml-5 ">Shop By Icons</h2>
+            <!-- Scroll buttons -->
+            <button id="scrollLeft4" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            
+            <button id="scrollRight4" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 opacity-70 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            
+            <!-- Horizontal scroll container -->
+            <div id="scrollContainer4" class="flex overflow-x-auto space-x-4 p-4 scrollbar-hide scroll-smooth">
+                <!-- Image cards -->
+            <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[340px] h-[290px] absolute object-fill" src="src/img/—Pngtree—dropshipping men hole sole jogging_19801106.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Dunk
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[340px] h-[290px] absolute object-fill" src="src/img/—Pngtree—black jogging shoes isolated on_20119903.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Killshot
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[330px] h-[250px] absolute  object-fill" src="src/img/image-from-rawpixel-id-15502445-png.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Cortez
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[340px] h-[290px] absolute object-fill" src="src/img/—Pngtree—dropshipping men hole sole jogging_19801106.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Air Jordan
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[340px] h-[290px] absolute object-fill" src="src/img/—Pngtree—black jogging shoes isolated on_20119903.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Air Force
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[330px] h-[250px] absolute object-fill" src="src/img/image-from-rawpixel-id-15502445-png.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    P-6000
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[340px] h-[290px] absolute object-fill" src="src/img/—Pngtree—dropshipping men hole sole jogging_19801106.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Metcon
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[340px] h-[290px] absolute object-fill" src="src/img/—Pngtree—black jogging shoes isolated on_20119903.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Air Max Dn
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>
+                    <a class="w-[350px] h-[350px] relative pt-7 " href="shoes.html">
+                      <div class="w-[350px] h-[350px] relative pt-2">
+                
+                <img class="w-[330px] h-[250px] absolute object-fill" src="src/img/image-from-rawpixel-id-15502445-png.png" alt="">
+                <div class="w-[260px] h-[280px] m-auto bg-gradient-to-b from-gray-800 to-gray-500 rounded-xl ">
+                
+            <div class="">
+
+                <div class="absolute bottom-16 left-36 text-white font-semibold text-2xl text-shadow-blue-800">
+                    Blazer
+                </div>
+            </div>
+                </div>
+
+            </div>
+        </a>                
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollContainer = document.getElementById('scrollContainer4');
+            const scrollLeftBtn = document.getElementById('scrollLeft4');
+            const scrollRightBtn = document.getElementById('scrollRight4');
+            
+            // Scroll right
+            scrollRightBtn.addEventListener('click', function() {
+                scrollContainer4.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Scroll left
+            scrollLeftBtn.addEventListener('click', function() {
+                scrollContainer4.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Hide buttons when at the edges
+            function updateButtonVisibility() {
+                const scrollLeft4 = scrollContainer4.scrollLeft4;
+                const maxScrollLeft = scrollContainer4.scrollWidth - scrollContainer4.clientWidth;
+                
+                scrollLeftBtn.style.opacity = scrollLeft4 > 0 ? '0.7' : '0.3';
+                scrollRightBtn.style.opacity = scrollLeft4 < maxScrollLeft ? '0.7' : '0.3';
+            }
+            
+            scrollContainer4.addEventListener('scroll', updateButtonVisibility);
+            updateButtonVisibility(); // Initial check
+        });
+    </script>
+        
+        </div>
+    </section>
+    
+</main>
+<footer>
+    <p class="border-[1px] border-b-gray-200 w-[95%] m-auto "></p>
+ <div class="lg:flex">
+ <details
+        open
+        class="mt-70 w-[100%] m-auto rounded-xl lg:mt-19 "
+      >
+        <summary class="py- px-4 font-semibold list-none cursor-pointer text-black flex justify-between">
+          Resources
+          <i class="fas fa-chevron-down text-black"></i>
+        </summary>
+        <div class="flex flex-col pl-5 gap-2 text-gray-500 font-semibold text-[14px] mt-5">
+    <a href="">Find A Member</a>
+    <a href="">Become A Member</a>
+    <a href="">Running Shoe Finder</a>
+    <a href="">Nike Coaching</a>
+    <a href="">Send Us Feedback</a>
+    
+        </div>
+      </details>
+          <p class="border-[1px] border-b-gray-200 w-[95%] m-auto mt-4 lg:border-0"></p>
+           <details
+        open
+        class="mt-70 w-[100%] m-auto rounded-xl lg:mt-19 mt-10">
+        <summary class="py- px-4 font-semibold list-none cursor-pointer text-black flex justify-between">
+          Help
+          <i class="fas fa-chevron-down text-black"></i>
+        </summary>
+        <div class="flex flex-col pl-5 gap-2 text-gray-500 font-semibold text-[14px] mt-5">
+    <a href="">Find A Member</a>
+    <a href="">Become A Member</a>
+    <a href="">Running Shoe Finder</a>
+    <a href="">Nike Coaching</a>
+    <a href="">Send Us Feedback</a>
+    
+        </div>
+      </details>
+          <p class="border-[1px] border-b-gray-200 w-[95%] m-auto mt-4 lg:border-0"></p>
+           <details
+        open
+        class="mt-70 w-[100%] m-auto rounded-xl lg:mt-19 mt-10">
+        <summary class=" px-4 font-semibold list-none cursor-pointer text-black flex justify-between">
+          Company
+          <i class="fas fa-chevron-down text-black"></i>
+        </summary>
+        <div class="flex flex-col pl-5 gap-2 text-gray-500 font-semibold text-[14px] mt-5">
+    <a href="">Find A Member</a>
+    <a href="">Become A Member</a>
+    <a href="">Running Shoe Finder</a>
+    <a href="">Nike Coaching</a>
+    <a href="">Send Us Feedback</a>
+    
+        </div>
+      </details>
+          <p class="border-[1px] border-b-gray-200 w-[95%] m-auto mt-4 mb-5 lg:border-0"></p>
+
+<a href="" class="pt-6"><i class="font-semibold text-gray-500 ml-4">🌏IRAN</i></a> 
+
+</details>
+          <p class="border-[1px] border-b-gray-200 w-[95%] m-auto mt-4 lg:border-0"></p>
+
+        <div class="flex flex-col pl-5 gap-2 text-gray-500 font-semibold text-[14px] mt-6 mb-16">
+    <a href="" class=" hover:text-black">© 2025 Nike, Inc. All rights reserved</a>
+        <details
+        open
+        class="mt-70 w-[170px]  rounded-xl lg:mt-19 ">
+        <summary class="  font-semibold list-none cursor-pointer hover:text-black  ">
+          Guides
+          <i class="fas fa-chevron-down"></i>
+        </summary>
+        <div class="flex flex-col text-center gap-3 text-gray-500 font-semibold text-[14px] py-4 mt-5 bg-white border-2 border-gray-200  rounded-xl  text-black">
+    <a href="" class="hover:bg-gray-300 hover:text-black">Find A Member</a>
+    <a href="" class="hover:bg-gray-300 hover:text-black">Become A Member</a>
+    <a href="" class="hover:bg-gray-300 hover:text-black">Running Shoe Finder</a>
+    <a href="" class="hover:bg-gray-300 hover:text-black">Nike Coaching</a>
+    <a href="" class="hover:bg-gray-300 hover:text-black">Send Us Feedback</a>
+    
+        </div>
+      </details>
+    <a href="" class=" hover:text-black">Terms of Sale</a>
+    <a href="" class=" hover:text-black">Terms of Use</a>
+    <a href="" class=" hover:text-black">Nike Privacy Policy</a>
+    
+        </div>
+      </details>
+ </div>
+   
+</footer>
+    <script src="js/card.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/main.js"></script>
+    <!-- در صفحات HTML -->
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

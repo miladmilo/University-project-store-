@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل کاربری | Nike Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title> Similar to the Nike site</title>
+    <link rel="icon" type="image/png" href="src/img/nike-4-logo-png-transparent.png">
+    
+</head>
+<body class="bg-gray-50">
+    <header>
+        <!-- کپی هدر از index.html -->
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- سایدبار پنل کاربری -->
+                <aside class="lg:w-1/4">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <!-- پروفایل کاربر -->
+                        <div class="text-center mb-6">
+                            <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl">
+                                👤
+                            </div>
+                            <h3 class="font-bold text-xl" id="userName">کاربر مهمان</h3>
+                            <p class="text-gray-600" id="userEmail">email@example.com</p>
+                            <button class="mt-3 text-sm text-blue-600 hover:text-blue-800">ویرایش پروفایل</button>
+                        </div>
+                        
+                        <!-- منو -->
+                        <nav class="space-y-2">
+                            <a href="#dashboard" class="flex items-center p-3 rounded-lg hover:bg-gray-100 active-menu">
+                                <i class="fas fa-home ml-3"></i>
+                                <span>داشبورد</span>
+                            </a>
+                            <a href="#orders" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-shopping-bag ml-3"></i>
+                                <span>سفارشات من</span>
+                            </a>
+                            <a href="#addresses" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-map-marker-alt ml-3"></i>
+                                <span>آدرس‌ها</span>
+                            </a>
+                            <a href="#wishlist" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-heart ml-3"></i>
+                                <span>لیست علاقه‌مندی‌ها</span>
+                            </a>
+                            <a href="#settings" class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-cog ml-3"></i>
+                                <span>تنظیمات حساب</span>
+                            </a>
+                            <button id="logoutBtn" class="flex items-center p-3 rounded-lg hover:bg-red-50 text-red-600 w-full text-right">
+                                <i class="fas fa-sign-out-alt ml-3"></i>
+                                <span>خروج از حساب</span>
+                            </button>
+                        </nav>
+                    </div>
+                </aside>
+                
+                <!-- محتوای اصلی -->
+                <div class="lg:w-3/4">
+                    <!-- داشبورد -->
+                    <div id="dashboard" class="dashboard-section">
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h2 class="font-bold text-2xl mb-6">خوش آمدید!</h2>
+                            
+                            <!-- آمار -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-shopping-bag text-3xl text-blue-600 ml-4"></i>
+                                        <div>
+                                            <p class="text-gray-600">سفارشات فعال</p>
+                                            <p class="text-2xl font-bold" id="activeOrders">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-heart text-3xl text-green-600 ml-4"></i>
+                                        <div>
+                                            <p class="text-gray-600">علاقه‌مندی‌ها</p>
+                                            <p class="text-2xl font-bold" id="wishlistCount">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-6 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star text-3xl text-purple-600 ml-4"></i>
+                                        <div>
+                                            <p class="text-gray-600">امتیاز کاربری</p>
+                                            <p class="text-2xl font-bold">4.8</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- آخرین سفارشات -->
+                            <div>
+                                <h3 class="font-bold text-xl mb-4">آخرین سفارشات</h3>
+                                <div id="recentOrders" class="space-y-4">
+                                    <div class="border rounded-lg p-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-semibold">سفارش #ORD-001</span>
+                                            <span class="text-sm text-gray-600">۱۴۰۳/۰۱/۱۵</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span>در حال پردازش</span>
+                                            <span class="font-bold">۲,۵۰۰,۰۰۰ تومان</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- سفارشات -->
+                    <div id="orders" class="dashboard-section hidden">
+                        <!-- محتوای سفارشات -->
+                    </div>
+                    
+                    <!-- آدرس‌ها -->
+                    <div id="addresses" class="dashboard-section hidden">
+                        <!-- محتوای آدرس‌ها -->
+                    </div>
+                    
+                    <!-- علاقه‌مندی‌ها -->
+                    <div id="wishlist" class="dashboard-section hidden">
+                        <!-- محتوای علاقه‌مندی‌ها -->
+                    </div>
+                    
+                    <!-- تنظیمات -->
+                    <div id="settings" class="dashboard-section hidden">
+                        <!-- محتوای تنظیمات -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/main.js"></script>
+    <!-- در صفحات HTML -->
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

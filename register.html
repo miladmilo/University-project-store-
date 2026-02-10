@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت‌نام | Nike Store</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .form-section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .progress-step.active {
+            background-color: #000;
+            color: white;
+        }
+        
+        .password-strength-bar {
+            transition: width 0.3s ease;
+        }
+        
+        .terms-modal {
+            animation: slideIn 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    
+    <!-- هدر ساده -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- لوگو -->
+                <a href="index.html" class="flex items-center">
+                    <img src="img/nike-logo.png" alt="Nike" class="h-8">
+                    <span class="text-xl font-bold mr-2">NIKE</span>
+                </a>
+                
+                <!-- لینک ورود -->
+                <div class="text-sm">
+                    <span class="text-gray-600">قبلاً حساب دارید؟</span>
+                    <a href="login.html" class="text-black font-semibold hover:underline mr-2">
+                        ورود
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوای اصلی -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <!-- پیشرفت ثبت‌نام -->
+            <div class="mb-8">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="flex items-center">
+                        <!-- مرحله ۱ -->
+                        <div class="progress-step w-10 h-10 rounded-full border-2 border-black flex items-center justify-center font-bold active">
+                            ۱
+                        </div>
+                        <div class="w-16 h-1 bg-black"></div>
+                        
+                        <!-- مرحله ۲ -->
+                        <div class="progress-step w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center font-bold text-gray-400">
+                            ۲
+                        </div>
+                        <div class="w-16 h-1 bg-gray-300"></div>
+                        
+                        <!-- مرحله ۳ -->
+                        <div class="progress-step w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center font-bold text-gray-400">
+                            ۳
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between text-sm text-center px-4">
+                    <span class="font-semibold">اطلاعات شخصی</span>
+                    <span class="text-gray-500">اطلاعات تماس</span>
+                    <span class="text-gray-500">تکمیل ثبت‌نام</span>
+                </div>
+            </div>
+            
+            <!-- عنوان -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold mb-2">ایجاد حساب جدید</h1>
+                <p class="text-gray-600">لطفا اطلاعات خود را با دقت وارد کنید</p>
+            </div>
+            
+            <!-- فرم ثبت‌نام -->
+            <form id="registerForm" class="space-y-8">
+                <!-- بخش ۱: اطلاعات شخصی -->
+                <div class="form-section bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-6 pb-3 border-b">📝 اطلاعات شخصی</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- نام -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                نام <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" 
+                                   name="firstName" 
+                                   required
+                                   placeholder="علی"
+                                   class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                        
+                        <!-- نام خانوادگی -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                نام خانوادگی <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" 
+                                   name="lastName" 
+                                   required
+                                   placeholder="محمدی"
+                                   class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                        
+                        <!-- تاریخ تولد -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">تاریخ تولد</label>
+                            <input type="date" 
+                                   name="birthDate"
+                                   class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <!-- جنسیت -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">جنسیت</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" value="male" class="ml-2">
+                                    <span>آقا</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" value="female" class="ml-2">
+                                    <span>خانم</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- بخش ۲: اطلاعات تماس -->
+                <div class="form-section bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-6 pb-3 border-b">📞 اطلاعات تماس</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- ایمیل -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                ایمیل <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" 
+                                   name="email" 
+                                   required
+                                   placeholder="example@email.com"
+                                   class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                            <div id="emailStatus" class="text-sm mt-1 hidden"></div>
+                        </div>
+                        
+                        <!-- تلفن همراه -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                تلفن همراه <span class="text-red-500">*</span>
+                            </label>
+                            <div class="flex">
+                                <span class="border border-r-0 rounded-r-none rounded-lg px-4 py-3 bg-gray-50">+98</span>
+                                <input type="tel" 
+                                       name="phone" 
+                                       required
+                                       pattern="09[0-9]{9}"
+                                       placeholder="9123456789"
+                                       class="flex-grow border rounded-l-none rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- بخش ۳: رمز عبور -->
+                <div class="form-section bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-6 pb-3 border-b">🔐 رمز عبور</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- رمز عبور -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                رمز عبور <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" 
+                                       name="password" 
+                                       id="password"
+                                       required
+                                       minlength="6"
+                                       placeholder="حداقل ۶ کاراکتر"
+                                       class="w-full border rounded-lg px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <button type="button" 
+                                        class="absolute left-3 top-3 text-gray-500 hover:text-gray-700"
+                                        onclick="togglePassword('password')">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- قدرت رمز -->
+                            <div class="mt-2">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span>قدرت رمز عبور:</span>
+                                    <span id="passwordStrengthText">ضعیف</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div id="passwordStrengthBar" 
+                                         class="password-strength-bar h-2 rounded-full bg-red-500 w-1/4"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                            
+                            <!-- نکات رمز عبور -->
+                            <div class="mt-3 space-y-1 text-xs text-gray-600">
+                                <p>✓ باید حداقل ۶ کاراکتر باشد</p>
+                                <p>✓ بهتر است شامل حروف و اعداد باشد</p>
+                                <p>✓ می‌تواند شامل !@#$%^&* باشد</p>
+                            </div>
+                        </div>
+                        
+                        <!-- تکرار رمز عبور -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                تکرار رمز عبور <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" 
+                                       name="confirmPassword" 
+                                       id="confirmPassword"
+                                       required
+                                       placeholder="تکرار رمز عبور"
+                                       class="w-full border rounded-lg px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <button type="button" 
+                                        class="absolute left-3 top-3 text-gray-500 hover:text-gray-700"
+                                        onclick="togglePassword('confirmPassword')">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="error-message text-red-500 text-sm mt-1 hidden"></div>
+                            <div id="passwordMatch" class="text-sm mt-1 hidden"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- بخش ۴: تنظیمات و قوانین -->
+                <div class="form-section bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-lg font-semibold mb-6 pb-3 border-b">⚙️ تنظیمات و قوانین</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- عضویت در خبرنامه -->
+                        <label class="flex items-start">
+                            <input type="checkbox" 
+                                   name="newsletter" 
+                                   checked
+                                   class="mt-1 ml-3">
+                            <div>
+                                <span class="font-medium">عضویت در خبرنامه</span>
+                                <p class="text-sm text-gray-600 mt-1">
+                                    از جدیدترین محصولات، حراج‌ها و اخبار نایکی با خبر شوید
+                                </p>
+                            </div>
+                        </label>
+                        
+                        <!-- قوانین -->
+                        <label class="flex items-start">
+                            <input type="checkbox" 
+                                   name="terms" 
+                                   required
+                                   class="mt-1 ml-3">
+                            <div>
+                                <span class="font-medium">
+                                    <span class="text-red-500">*</span> قوانین و مقررات
+                                </span>
+                                <p class="text-sm text-gray-600 mt-1">
+                                    <a href="#" onclick="showTerms()" class="text-blue-600 hover:underline">
+                                        شرایط استفاده
+                                    </a>
+                                    و 
+                                    <a href="#" onclick="showPrivacy()" class="text-blue-600 hover:underline">
+                                        حریم خصوصی
+                                    </a>
+                                    را مطالعه کرده‌ام و موافقم
+                                </p>
+                            </div>
+                        </label>
+                        <div class="error-message text-red-500 text-sm mt-1 hidden" id="termsError"></div>
+                    </div>
+                </div>
+                
+                <!-- دکمه‌ها -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button type="button" 
+                            onclick="window.location.href='index.html'"
+                            class="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-arrow-right ml-2"></i>
+                        بازگشت
+                    </button>
+                    
+                    <button type="submit" 
+                            id="submitBtn"
+                            class="flex-1 bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-user-plus ml-2"></i>
+                        ایجاد حساب کاربری
+                    </button>
+                </div>
+                
+                <!-- ورود با حساب‌های دیگر -->
+                <div class="text-center pt-6 border-t">
+                    <p class="text-gray-600 mb-4">یا ثبت‌نام با</p>
+                    <div class="flex justify-center gap-4">
+                        <button type="button" 
+                                class="w-12 h-12 border rounded-full hover:bg-gray-50">
+                            <i class="fab fa-google text-red-500"></i>
+                        </button>
+                        <button type="button" 
+                                class="w-12 h-12 border rounded-full hover:bg-gray-50">
+                            <i class="fab fa-facebook-f text-blue-600"></i>
+                        </button>
+                        <button type="button" 
+                                class="w-12 h-12 border rounded-full hover:bg-gray-50">
+                            <i class="fab fa-apple"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <!-- مودال قوانین -->
+    <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold" id="modalTitle">قوانین و مقررات</h3>
+                    <button onclick="closeModal()" class="text-2xl text-gray-500 hover:text-black">
+                        &times;
+                    </button>
+                </div>
+                <div id="modalContent" class="prose prose-sm max-w-none">
+                    <!-- محتوا با JavaScript پر می‌شود -->
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" 
+                            class="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+                        فهمیدم
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- اسکریپت‌ها -->
+    <script src="js/auth.js"></script>
+    <script src="js/validation.js"></script>
+    
+<script>
+    // ==================== توابع کمکی ====================
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        const icon = field.parentNode.querySelector('i');
+        
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            field.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+    
+    function showTerms() {
+        document.getElementById('modalTitle').textContent = 'قوانین و مقررات استفاده';
+        document.getElementById('modalContent').innerHTML = `
+            <h4>شرایط استفاده از فروشگاه نایکی</h4>
+            <p>با ثبت‌نام در سایت نایکی، شما موافقت می‌کنید که:</p>
+            <ul>
+                <li>اطلاعات ارائه شده توسط شما صحیح و کامل باشد</li>
+                <li>از حساب کاربری خود به صورت شخصی استفاده کنید</li>
+                <li>مسئولیت حفظ امنیت رمز عبور خود را بر عهده بگیرید</li>
+                <li>از سایت برای اهداف قانونی استفاده کنید</li>
+                <li>قوانین جمهوری اسلامی ایران را رعایت کنید</li>
+            </ul>
+            
+            <h4>سیاست بازگشت کالا</h4>
+            <p>کالاهای خریداری شده در صورت داشتن مشکل ظاهری یا کیفیتی، تا ۷ روز قابل بازگشت هستند.</p>
+            
+            <h4>حریم خصوصی</h4>
+            <p>اطلاعات شخصی شما نزد ما امانت است و در اختیار افراد ثالث قرار نمی‌گیرد.</p>
+        `;
+        document.getElementById('termsModal').classList.remove('hidden');
+        document.getElementById('termsModal').classList.add('flex');
+    }
+    
+    function showPrivacy() {
+        document.getElementById('modalTitle').textContent = 'سیاست حریم خصوصی';
+        document.getElementById('modalContent').innerHTML = `
+            <h4>چه اطلاعاتی جمع‌آوری می‌شود؟</h4>
+            <ul>
+                <li>اطلاعات ثبت‌نام: نام، ایمیل، شماره تلفن</li>
+                <li>اطلاعات خرید: آدرس، تاریخچه سفارشات</li>
+                <li>اطلاعات فنی: آی‌پی، نوع مرورگر، دستگاه</li>
+            </ul>
+            
+            <h4>چگونه از اطلاعات شما استفاده می‌شود؟</h4>
+            <ul>
+                <li>ارائه خدمات و پشتیبانی</li>
+                <li>بهبود تجربه کاربری</li>
+                <li>ارسال اطلاع‌رسانی و پیشنهادات</li>
+                <li>بررسی و تحلیل آماری</li>
+            </ul>
+            
+            <h4>حفاظت از اطلاعات</h4>
+            <p>ما از استانداردهای امنیتی برای حفاظت از اطلاعات شما استفاده می‌کنیم.</p>
+            
+            <h4>حقوق شما</h4>
+            <p>شما می‌توانید درخواست مشاهده، اصلاح یا حذف اطلاعات خود را داشته باشید.</p>
+        `;
+        document.getElementById('termsModal').classList.remove('hidden');
+        document.getElementById('termsModal').classList.add('flex');
+    }
+    
+    function closeModal() {
+        document.getElementById('termsModal').classList.add('hidden');
+        document.getElementById('termsModal').classList.remove('flex');
+    }
+    
+    // بستن مودال با کلیک بیرون
+    document.getElementById('termsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+    
+    // بستن مودال با Esc
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+    
+    // ==================== اعتبارسنجی زمان تایپ ====================
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('registerForm');
+        const passwordField = document.getElementById('password');
+        const confirmField = document.getElementById('confirmPassword');
+        const emailField = form.querySelector('input[name="email"]');
+        const firstNameField = form.querySelector('input[name="firstName"]');
+        const lastNameField = form.querySelector('input[name="lastName"]');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // بررسی قدرت رمز عبور
+        passwordField.addEventListener('input', function() {
+            checkPasswordStrength(this.value);
+            checkPasswordMatch();
+        });
+        
+        // بررسی تطابق رمز عبور
+        confirmField.addEventListener('input', checkPasswordMatch);
+        
+        // بررسی ایمیل
+        emailField.addEventListener('blur', function() {
+            checkEmailAvailability(this.value);
+        });
+        
+        // بررسی نام (real-time validation)
+        firstNameField.addEventListener('input', function() {
+            validateName(this, 'نام');
+        });
+        
+        lastNameField.addEventListener('input', function() {
+            validateName(this, 'نام خانوادگی');
+        });
+        
+        // بررسی قوانین
+        const termsCheckbox = form.querySelector('input[name="terms"]');
+        termsCheckbox.addEventListener('change', function() {
+            const errorElement = document.getElementById('termsError');
+            if (!this.checked) {
+                errorElement.textContent = 'لطفاً قوانین را بپذیرید';
+                errorElement.classList.remove('hidden');
+            } else {
+                errorElement.classList.add('hidden');
+            }
+        });
+        
+        // مدیریت submit فرم
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // اعتبارسنجی کلی
+            if (!validateForm()) {
+                return;
+            }
+            
+            // غیرفعال کردن دکمه
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> در حال ثبت‌نام...';
+            
+            // جمع‌آوری داده‌ها
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // اضافه کردن نام کامل
+            data.name = `${data.firstName} ${data.lastName}`;
+            
+            try {
+                // استفاده از AuthManager
+                if (window.AuthManager) {
+                    await AuthManager.handleRegister(form);
+                } else {
+                    console.error('AuthManager موجود نیست');
+                    showError('خطای سیستم. لطفاً بعداً تلاش کنید.');
+                }
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                // فعال کردن دکمه
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-user-plus ml-2"></i> ایجاد حساب کاربری';
+            }
+        });
+    });
+    
+    // اعتبارسنجی کامل فرم
+    function validateForm() {
+        let isValid = true;
+        
+        // پاک کردن خطاهای قبلی
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.classList.add('hidden');
+        });
+        
+        // اعتبارسنجی نام
+        const firstName = document.querySelector('input[name="firstName"]').value.trim();
+        const lastName = document.querySelector('input[name="lastName"]').value.trim();
+        
+        if (!firstName || firstName.length < 2) {
+            showFieldError('firstName', 'نام باید حداقل ۲ کاراکتر باشد');
+            isValid = false;
+        }
+        
+        if (!lastName || lastName.length < 2) {
+            showFieldError('lastName', 'نام خانوادگی باید حداقل ۲ کاراکتر باشد');
+            isValid = false;
+        }
+        
+        // اعتبارسنجی ایمیل
+        const email = document.querySelector('input[name="email"]').value.trim();
+        if (!email || !validateEmail(email)) {
+            showFieldError('email', 'ایمیل معتبر نیست');
+            isValid = false;
+        }
+        
+        // اعتبارسنجی رمز عبور
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        if (!password || password.length < 6) {
+            showFieldError('password', 'رمز عبور باید حداقل ۶ کاراکتر باشد');
+            isValid = false;
+        }
+        
+        if (password !== confirmPassword) {
+            showFieldError('confirmPassword', 'رمز عبور و تکرار آن مطابقت ندارند');
+            isValid = false;
+        }
+        
+        // اعتبارسنجی شماره تلفن
+        const phone = document.querySelector('input[name="phone"]').value;
+        if (phone && !validatePhone(phone)) {
+            showFieldError('phone', 'شماره تلفن معتبر نیست (مثال: 09123456789)');
+            isValid = false;
+        }
+        
+        // اعتبارسنجی قوانین
+        const terms = document.querySelector('input[name="terms"]');
+        if (!terms.checked) {
+            document.getElementById('termsError').textContent = 'لطفاً قوانین را بپذیرید';
+            document.getElementById('termsError').classList.remove('hidden');
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    // اعتبارسنجی زمان تایپ برای نام
+    function validateName(field, fieldName) {
+        const value = field.value.trim();
+        const errorElement = field.parentNode.querySelector('.error-message');
+        
+        if (!value) {
+            errorElement.textContent = `${fieldName} الزامی است`;
+            errorElement.classList.remove('hidden');
+            field.classList.add('border-red-500');
+            return false;
+        }
+        
+        if (value.length < 2) {
+            errorElement.textContent = `${fieldName} باید حداقل ۲ کاراکتر باشد`;
+            errorElement.classList.remove('hidden');
+            field.classList.add('border-red-500');
+            return false;
+        }
+        
+        errorElement.classList.add('hidden');
+        field.classList.remove('border-red-500');
+        return true;
+    }
+    
+    // نمایش خطای فیلد
+    function showFieldError(fieldName, message) {
+        const field = document.querySelector(`[name="${fieldName}"]`);
+        if (field) {
+            const errorElement = field.parentNode.querySelector('.error-message');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+                field.classList.add('border-red-500');
+            }
+        }
+    }
+    
+    // اعتبارسنجی ایمیل
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    // اعتبارسنجی شماره تلفن
+    function validatePhone(phone) {
+        const re = /^09[0-9]{9}$/;
+        return re.test(phone);
+    }
+    
+    function checkPasswordStrength(password) {
+        const strengthBar = document.getElementById('passwordStrengthBar');
+        const strengthText = document.getElementById('passwordStrengthText');
+        
+        let strength = 0;
+        let width = '0%';
+        let color = 'bg-red-500';
+        let text = 'ضعیف';
+        
+        if (password.length >= 6) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        switch(strength) {
+            case 1:
+                width = '25%';
+                color = 'bg-red-500';
+                text = 'ضعیف';
+                break;
+            case 2:
+                width = '50%';
+                color = 'bg-orange-500';
+                text = 'متوسط';
+                break;
+            case 3:
+                width = '75%';
+                color = 'bg-yellow-500';
+                text = 'قوی';
+                break;
+            case 4:
+                width = '100%';
+                color = 'bg-green-500';
+                text = 'خیلی قوی';
+                break;
+            default:
+                width = '0%';
+                color = 'bg-gray-300';
+                text = '';
+        }
+        
+        strengthBar.style.width = width;
+        strengthBar.className = `password-strength-bar h-2 rounded-full ${color}`;
+        strengthText.textContent = text;
+    }
+    
+    function checkPasswordMatch() {
+        const password = document.getElementById('password').value;
+        const confirm = document.getElementById('confirmPassword').value;
+        const matchElement = document.getElementById('passwordMatch');
+        const confirmField = document.getElementById('confirmPassword');
+        
+        if (!password || !confirm) {
+            matchElement.classList.add('hidden');
+            return;
+        }
+        
+        if (password === confirm) {
+            matchElement.textContent = '✓ رمزها مطابقت دارند';
+            matchElement.className = 'text-sm mt-1 text-green-600';
+            matchElement.classList.remove('hidden');
+            confirmField.classList.remove('border-red-500');
+            confirmField.classList.add('border-green-500');
+        } else {
+            matchElement.textContent = '✗ رمزها مطابقت ندارند';
+            matchElement.className = 'text-sm mt-1 text-red-600';
+            matchElement.classList.remove('hidden');
+            confirmField.classList.remove('border-green-500');
+            confirmField.classList.add('border-red-500');
+        }
+    }
+    
+    async function checkEmailAvailability(email) {
+        const statusElement = document.getElementById('emailStatus');
+        const emailField = document.querySelector('input[name="email"]');
+        
+        if (!email || !email.includes('@')) {
+            statusElement.classList.add('hidden');
+            return;
+        }
+        
+        // شبیه‌سازی بررسی ایمیل
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const exists = users.some(user => user.email === email);
+        
+        if (exists) {
+            statusElement.textContent = '✗ این ایمیل قبلاً ثبت شده است';
+            statusElement.className = 'text-sm mt-1 text-red-600';
+            statusElement.classList.remove('hidden');
+            emailField.classList.add('border-red-500');
+        } else {
+            statusElement.textContent = '✓ این ایمیل قابل استفاده است';
+            statusElement.className = 'text-sm mt-1 text-green-600';
+            statusElement.classList.remove('hidden');
+            emailField.classList.remove('border-red-500');
+            emailField.classList.add('border-green-500');
+        }
+    }
+    
+    function showError(message) {
+        // حذف نوتیفیکیشن‌های قبلی
+        document.querySelectorAll('.global-error').forEach(el => el.remove());
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'global-error fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        errorDiv.textContent = message;
+        
+        document.body.appendChild(errorDiv);
+        
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 5000);
+    }
+    
+    function showSuccess(message) {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        successDiv.textContent = message;
+        
+        document.body.appendChild(successDiv);
+        
+        setTimeout(() => {
+            successDiv.remove();
+        }, 5000);
+    }
+    
+    // ایجاد داده‌های تست اگر وجود ندارد
+    function initializeTestData() {
+        if (!localStorage.getItem('users')) {
+            const testUsers = [
+                {
+                    id: 1,
+                    email: "admin@nike.com",
+                    password: "admin123",
+                    name: "مدیر سیستم",
+                    role: "admin",
+                    status: "active"
+                }
+            ];
+            localStorage.setItem('users', JSON.stringify(testUsers));
+            console.log('✅ داده‌های تست ایجاد شدند');
+        }
+    }
+    
+    // اجرای اولیه
+    initializeTestData();
+</script>
+
+</body>
+</html>

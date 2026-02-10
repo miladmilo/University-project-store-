@@ -1,0 +1,147 @@
+<!-- debug.html -->
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>رفع اشکال لاگین</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Tahoma; padding: 20px; background: #f0f0f0; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h1 { color: #333; }
+        .section { margin: 20px 0; padding: 15px; border-radius: 5px; }
+        .info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+        .error { background: #ffebee; border-left: 4px solid #f44336; }
+        .success { background: #e8f5e9; border-left: 4px solid #4caf50; }
+        button { background: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { opacity: 0.9; }
+        .btn-danger { background: #f44336; }
+        pre { background: #333; color: #fff; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ ابزار رفع اشکال سیستم لاگین</h1>
+        
+        <div class="section info">
+            <h3>📊 وضعیت سیستم</h3>
+            <div id="status"></div>
+        </div>
+        
+        <div class="section">
+            <h3>🔧 عملیات</h3>
+            <button onclick="clearLocalStorage()">پاک کردن همه داده‌ها</button>
+            <button onclick="createTestUsers()">ایجاد کاربران تست</button>
+            <button onclick="testLogin()">تست لاگین</button>
+            <button onclick="logout()" class="btn-danger">خروج</button>
+        </div>
+        
+        <div class="section">
+            <h3>📝 لاگ کنسول</h3>
+            <pre id="consoleOutput"></pre>
+        </div>
+        
+        <div class="section info">
+            <h3>👤 اطلاعات کاربران تست</h3>
+            <p><strong>مدیر سیستم:</strong> admin@nike.com / admin123</p>
+            <p><strong>کاربر عادی:</strong> user@test.com / user123</p>
+        </div>
+    </div>
+    
+    <script>
+        // تابع برای نمایش وضعیت
+        function updateStatus() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            let statusHTML = `
+                <p><strong>تعداد کاربران:</strong> ${users.length}</p>
+                <p><strong>کاربر لاگین کرده:</strong> ${currentUser ? currentUser.name : 'هیچ‌کس'}</p>
+                <p><strong>AuthManager:</strong> ${window.AuthManager ? 'موجود' : 'مفقود'}</p>
+            `;
+            
+            document.getElementById('status').innerHTML = statusHTML;
+            
+            // نمایش لاگ
+            const consoleOutput = document.getElementById('consoleOutput');
+            const originalLog = console.log;
+            console.log = function(...args) {
+                originalLog.apply(console, args);
+                consoleOutput.textContent += args.join(' ') + '\n';
+            };
+        }
+        
+        // پاک کردن localStorage
+        function clearLocalStorage() {
+            localStorage.clear();
+            console.log('🧹 همه داده‌ها پاک شدند');
+            updateStatus();
+        }
+        
+        // ایجاد کاربران تست
+        function createTestUsers() {
+            const testUsers = [
+                {
+                    id: 1,
+                    email: "admin@nike.com",
+                    password: "admin123",
+                    name: "مدیر سیستم",
+                    role: "admin",
+                    status: "active"
+                },
+                {
+                    id: 2,
+                    email: "user@test.com",
+                    password: "user123",
+                    name: "کاربر تست",
+                    role: "customer",
+                    status: "active"
+                }
+            ];
+            
+            localStorage.setItem('users', JSON.stringify(testUsers));
+            console.log('✅ کاربران تست ایجاد شدند');
+            updateStatus();
+        }
+        
+        // تست لاگین
+        function testLogin() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.length === 0) {
+                console.error('❌ هیچ کاربری وجود ندارد');
+                return;
+            }
+            
+            console.log('🧪 تست لاگین با:', users[0].email);
+            
+            if (window.AuthManager) {
+                window.AuthManager.login(users[0]);
+            } else {
+                console.error('❌ AuthManager موجود نیست');
+            }
+        }
+        
+        // خروج
+        function logout() {
+            if (window.AuthManager) {
+                window.AuthManager.handleLogout();
+            } else {
+                localStorage.removeItem('currentUser');
+                console.log('✅ خروج انجام شد');
+                updateStatus();
+            }
+        }
+        
+        // بارگذاری اولیه
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus();
+            console.log('🛠️ ابزار رفع اشکال آماده است');
+            
+            // نمایش داده‌های فعلی
+            console.log('📁 داده‌های فعلی localStorage:');
+            console.log('users:', localStorage.getItem('users'));
+            console.log('currentUser:', localStorage.getItem('currentUser'));
+        });
+    </script>
+</body>
+</html>

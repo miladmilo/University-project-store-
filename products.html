@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محصولات نایکی | Nike Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title> Similar to the Nike site</title>
+    <link rel="icon" type="image/png" href="src/img/nike-4-logo-png-transparent.png">
+    
+</head>
+<body class="bg-gray-50">
+    <!-- هدر مشابه index.html -->
+    <header>
+        <!-- کپی هدر از index.html -->
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- فیلترها -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- سایدبار فیلتر -->
+            <aside class="lg:w-1/4">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-lg mb-4">فیلتر محصولات</h3>
+                    
+                    <!-- دسته‌بندی -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">دسته‌بندی</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="running" checked>
+                                <span class="mr-2">کفش‌های دویدن</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="basketball" checked>
+                                <span class="mr-2">بسکتبال</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="lifestyle" checked>
+                                <span class="mr-2">سبک زندگی</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="category-filter" value="training" checked>
+                                <span class="mr-2">تمرین</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- قیمت -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">محدوده قیمت</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="0-500000" checked>
+                                <span class="mr-2">تا ۵۰۰,۰۰۰ تومان</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="500000-1000000">
+                                <span class="mr-2">۵۰۰,۰۰۰ تا ۱,۰۰۰,۰۰۰ تومان</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="1000000-3000000">
+                                <span class="mr-2">۱,۰۰۰,۰۰۰ تا ۳,۰۰۰,۰۰۰ تومان</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="price-filter" value="3000000-10000000">
+                                <span class="mr-2">بالای ۳,۰۰۰,۰۰۰ تومان</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- سایز -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">سایز (EU)</h4>
+                        <div class="flex flex-wrap gap-2">
+                            [38, 39, 40, 41, 42, 43, 44, 45].map(size => `
+                                <button class="size-btn border px-3 py-1 rounded hover:bg-gray-100" data-size="${size}">${size}</button>
+                            `).join('')
+                        </div>
+                    </div>
+                    
+                    <!-- دکمه اعمال فیلتر -->
+                    <button id="applyFilters" class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800">
+                        اعمال فیلترها
+                    </button>
+                    <button id="clearFilters" class="w-full border border-gray-300 py-2 rounded-lg mt-2 hover:bg-gray-50">
+                        پاک کردن فیلترها
+                    </button>
+                </div>
+            </aside>
+            
+            <!-- محتوای اصلی -->
+            <div class="lg:w-3/4">
+                <!-- نوار مرتب‌سازی -->
+                <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-lg shadow-sm">
+                    <div>
+                        <span id="productCount">12</span> محصول یافت شد
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span>مرتب‌سازی بر اساس:</span>
+                        <select id="sortBy" class="border rounded px-3 py-1">
+                            <option value="newest">جدیدترین</option>
+                            <option value="price-low">قیمت: کم به زیاد</option>
+                            <option value="price-high">قیمت: زیاد به کم</option>
+                            <option value="popular">پرفروش‌ترین</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- لیست محصولات -->
+                <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- محصولات با JavaScript اضافه می‌شوند -->
+                </div>
+                
+                <!-- صفحه‌بندی -->
+                <div class="flex justify-center mt-10">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">« قبلی</button>
+                        <button class="px-3 py-2 border rounded bg-black text-white">1</button>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">2</button>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">3</button>
+                        <span class="px-3 py-2">...</span>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">10</button>
+                        <button class="px-3 py-2 border rounded hover:bg-gray-100">بعدی »</button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <!-- در صفحات HTML -->
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
