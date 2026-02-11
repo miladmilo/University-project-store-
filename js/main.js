@@ -11,6 +11,7 @@ class NikeStore {
     init() {
         this.setupEventListeners();
         this.updateCartCount();
+        this.updateCartCount1();
         this.checkAuthStatus();
         this.loadFeaturedProducts();
         this.setupMobileMenu();
@@ -370,6 +371,7 @@ class NikeStore {
         
         // آپدیت UI
         this.updateCartCount();
+        this.updateCartCount1();
         this.showNotification('محصول به سبد خرید اضافه شد', 'success');
         
         // انیمیشن اضافه شدن به سبد
@@ -378,7 +380,15 @@ class NikeStore {
     
     animateAddToCart(button) {
         const cartIcon = document.querySelector('.cart-icon');
-        if (!cartIcon) return;
+        const cartIcon1 = document.querySelector('.cart-icon');
+        const cartIcon2 = document.querySelector('.cart-icon');
+        const cartIcon3 = document.querySelector('.cart-icon');
+        const cartIcon4 = document.querySelector('.cart-icon');
+        const cartIcon5 = document.querySelector('.cart-icon');
+        const cartIcon6 = document.querySelector('.cart-icon');
+        const cartIcon7 = document.querySelector('.cart-icon');
+        const cartIcon8 = document.querySelector('.cart-icon');
+        if (!cartIcon , !cartIcon1 , !cartIcon2 , !cartIcon3 , !cartIcon4 , !cartIcon5 , !cartIcon6 , !cartIcon7 , !cartIcon8) return;
         
         // ایجاد عنصر شبیه‌سازی شده
         const clone = button.cloneNode(true);
@@ -389,6 +399,14 @@ class NikeStore {
         
         const buttonRect = button.getBoundingClientRect();
         const cartRect = cartIcon.getBoundingClientRect();
+        const cartRect1 = cartIcon1.getBoundingClientRect();
+        const cartRect2 = cartIcon2.getBoundingClientRect();
+        const cartRect3 = cartIcon3.getBoundingClientRect();
+        const cartRect4 = cartIcon4.getBoundingClientRect();
+        const cartRect5 = cartIcon5.getBoundingClientRect();
+        const cartRect6 = cartIcon6.getBoundingClientRect();
+        const cartRect7 = cartIcon7.getBoundingClientRect();
+        const cartRect8 = cartIcon8.getBoundingClientRect();
         
         clone.style.left = buttonRect.left + 'px';
         clone.style.top = buttonRect.top + 'px';
@@ -401,7 +419,23 @@ class NikeStore {
         requestAnimationFrame(() => {
             clone.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
             clone.style.left = cartRect.left + 'px';
+            clone.style.left = cartRect1.left + 'px';
+            clone.style.left = cartRect2.left + 'px';
+            clone.style.left = cartRect3.left + 'px';
+            clone.style.left = cartRect4.left + 'px';
+            clone.style.left = cartRect5.left + 'px';
+            clone.style.left = cartRect6.left + 'px';
+            clone.style.left = cartRect7.left + 'px';
+            clone.style.left = cartRect8.left + 'px';
             clone.style.top = cartRect.top + 'px';
+            clone.style.top = cartRect1.top + 'px';
+            clone.style.top = cartRect2.top + 'px';
+            clone.style.top = cartRect3.top + 'px';
+            clone.style.top = cartRect4.top + 'px';
+            clone.style.top = cartRect5.top + 'px';
+            clone.style.top = cartRect6.top + 'px';
+            clone.style.top = cartRect7.top + 'px';
+            clone.style.top = cartRect8.top + 'px';
             clone.style.width = '10px';
             clone.style.height = '10px';
             clone.style.opacity = '0';
@@ -447,9 +481,19 @@ class NikeStore {
         const cartCount = document.getElementById('cartCount');
         if (!cartCount) return;
         
+        
         const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
         cartCount.textContent = totalItems;
         cartCount.classList.toggle('hidden', totalItems === 0);
+    }
+    updateCartCount1() {
+        const cartCount1 = document.getElementById('cartCount1');
+        if (!cartCount1) return;
+        
+        
+        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount1.textContent = totalItems;
+        cartCount1.classList.toggle('hidden', totalItems === 0);
     }
     
     updateWishlistCount() {
